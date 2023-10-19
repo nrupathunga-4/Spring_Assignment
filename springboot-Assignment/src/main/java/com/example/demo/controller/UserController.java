@@ -23,34 +23,34 @@ public class UserController {
 	private UserService service;
 	
 	
-//	Api To Save The Student
-//	http://localhost:8080/save
-	@PostMapping("/save")
+//	Build A Api To Save The Student
+//	http://localhost:8080/api/student
+	@PostMapping("/api/student")
 	public ResponseEntity<UserPage> saveStudent(@RequestBody  UserPage page)
 	{
 		return new ResponseEntity<UserPage>(service.saveStudent(page),HttpStatus.CREATED);
 	}
 	
-//	Api To Get The Student By StudentId
-//	http://localhost:8080/get/{studentid}
-	@GetMapping("/get/{studentid}")
+//	Build Api To Get The Student By StudentId
+//	http://localhost:8080/api/student/{studentid}
+	@GetMapping("/api/student/{studentid}")
 	public ResponseEntity<UserPage> getStudentById(@PathVariable long studentid)
 	{
 		Optional<UserPage> optional=service.getStudentById(studentid);
 		return optional.map(ResponseEntity::ok).orElseGet(()->ResponseEntity.notFound().build());
 	}
 	
-//	Api To Update The Student Information
-//	http://localhost:8080/update/{studentid}
-	@PutMapping("/update/{studentid}")
+//	Build Api To Update The Student Information
+//	http://localhost:8080/api/student/{studentid}
+	@PutMapping("/api/student/{studentid}")
 	public ResponseEntity<UserPage> updateStudent(@RequestBody  UserPage page,@PathVariable  long studentid)
 	{
 		return new ResponseEntity<UserPage>(service.updateStudent(page, studentid),HttpStatus.OK);
 	}
 	
-//	Api To Delete Student From Database
-//	http://localhost:8080/delete/{studentid}
-	@DeleteMapping("/delete/{studentid}")
+//	Build Api To Delete Student From Database
+//	http://localhost:8080/api/student/{studentid}
+	@DeleteMapping("/api/student/{studentid}")
 	public ResponseEntity<String> deleteStudent(@PathVariable  long studentid)
 	{
 		service.deleteStudent(studentid);
